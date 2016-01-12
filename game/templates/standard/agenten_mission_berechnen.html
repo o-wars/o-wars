@@ -1,0 +1,22 @@
+<br /><br />
+<table border="1" cellspacing="0" style="background-color:#e2e2e2; font-size: 12px; width: 680px">
+	<tr style="background-image:url(%template_path%table_head.gif);" align="center"><td style="width:100%"><b>Agentenmission starten:</b></td></tr>
+	<tr>
+	<td valign="top" align="left">
+		Agent: %agent%<br />
+		Mission: %mission%<br />
+		Ziel: %target%<br />
+		Dauer: %dauer%<br />
+		Kosten: %kosten%<br />
+		
+		<form enctype="multipart/form-data" action="agentenmission.php?SID" method="post">
+		<input type="hidden" value="%target%" name="target" />
+		<input type="hidden" value="%mission%" name="type" />
+		<input type="hidden" value="%agent_id%" name="id" />
+		<input type="hidden" value="%fahrzeug%" name="fahrzeug" />
+		<input type="hidden" value="1" name="starten" />
+		<center><input type="submit" value="Mission Starten"></center>
+		</form>
+	</td>
+</tr>
+</table>

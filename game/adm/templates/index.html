@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+<meta name="expires" content="0" />
+<meta name="author" content="TheBunman" />
+<meta name="date" content="2004-09-11" />
+<meta name="robots" content="index" />
+<meta name="expires" content="0" />
+<meta name="description" content="owars" />
+<meta name="keywords" content="blah" />
+
+<title>o-wars --- Der Online Krieg</title>
+<script language="JavaScript">
+<!-- Begin
+var div = Number(new Date("%date%")) - Number(new Date());
+
+function clock()
+{
+u_date = new Date((Number(new Date()) + div));
+var hours = u_date.getHours();
+var minutes = u_date.getMinutes();
+var seconds = u_date.getSeconds();
+
+if (minutes <= 9) minutes = "0" + minutes;
+if (seconds <= 9) seconds = "0" + seconds;
+
+document.getElementById("clock").innerHTML = hours + ":" + minutes + ":" + seconds;
+timerID = setTimeout("clock()", 1000);
+}
+//  End of clock -->
+</script>
+<link rel="STYLESHEET" type="text/css" href="%template_path%stylesheet.css" />
+<link rel="STYLESHEET" type="text/css" href="stylesheet.css" />
+</head>
+<body onload="%onload%">
+<!--
+<script language="JavaScript"> 
+if (parent.frames.length == 0) { top.location.href = "http://www.o-wars.de/"; } 
+</script>
+-->
+
+&nbsp;<b><font style="font-size: 16px">O-Wars.de Admin-Panel</font></b>
+<table  style="background-color:#efd48d;">
+<tr valign="top"  style="background-color:#efd48d;">
+	<td width="150px">
+		<table border="1" cellspacing="0" cellpadding="0" style="background-color:#e2e2e2; font-size: 12px">
+			<tr style="background-image:url(../templates/standard/table_head.gif);" align="center">
+				<td width="140px">
+					<b>User-Editor</b>
+				</td>
+			</tr>
+			<tr align="center" onMouseOver=this.style.backgroundColor="#a2a2a2" onMouseOut=this.style.backgroundColor="#e2e2e2" onclick="location.href='uebersicht.php?SID'">
+				<td width="140px">
+					&Uuml;bersicht
+				</td>
+			</tr>
+			<tr align="center" onMouseOver=this.style.backgroundColor="#a2a2a2" onMouseOut=this.style.backgroundColor="#e2e2e2" onclick="location.href='gebaeude.php?SID'">
+				<td width="140px">
+					Geb&auml;ude
+				</td>
+			</tr>
+			<tr align="center" onMouseOver=this.style.backgroundColor="#a2a2a2" onMouseOut=this.style.backgroundColor="#e2e2e2" onclick="location.href='forschungen.php?SID'">
+				<td width="140px">
+					Forschungen
+				</td>
+			</tr>
+			<tr align="center" onMouseOver=this.style.backgroundColor="#a2a2a2" onMouseOut=this.style.backgroundColor="#e2e2e2" onclick="location.href='einheiten.php?SID'">
+				<td width="140px">
+					Einheiten
+				</td>
+			</tr>
+			<tr align="center" onMouseOver=this.style.backgroundColor="#a2a2a2" onMouseOut=this.style.backgroundColor="#e2e2e2" onclick="location.href='verteidigung.php?SID'">
+				<td width="140px">
+					Verteidigung
+				</td>
+			</tr>
+			<tr align="center" onMouseOver=this.style.backgroundColor="#a2a2a2" onMouseOut=this.style.backgroundColor="#e2e2e2" onclick="location.href='raketen.php?SID'">
+				<td width="140px">
+					Raketen
+				</td>
+			</tr></table>
+			<br />
+			<table border="1" cellspacing="0" cellpadding="0" style="background-color:#e2e2e2; font-size: 12px">
+			<tr style="background-image:url(../templates/standard/table_head.gif);" align="center">
+				<td width="140px">
+					<b>Admin-Menu</b>
+				</td>
+			</tr>
+			<tr align="center" onMouseOver=this.style.backgroundColor="#a2a2a2" onMouseOut=this.style.backgroundColor="#e2e2e2" onclick="location.href='server.php?SID'">
+				<td width="140px">
+					Server-Stats
+				</td>
+			</tr>			
+			<tr align="center" onMouseOver=this.style.backgroundColor="#a2a2a2" onMouseOut=this.style.backgroundColor="#e2e2e2" onclick="location.href='multi.php?SID'">
+				<td width="140px">
+					Multi-Hunter
+				</td>
+			</tr>						
+			<tr align="center" onMouseOver=this.style.backgroundColor="#a2a2a2" onMouseOut=this.style.backgroundColor="#e2e2e2" onclick="location.href='logout.php?SID'">
+				<td width="140px">
+					Logout
+				</td>
+			</tr>
+		</table>
+		<br />
+		<center>Serverzeit: <b><a onClick="reload();" id="clock">Serverzeit</a></b></center>
+		<script language="JavaScript">clock();</script>
+	</td>
+	<td>
+		%content%
+	</td>
+</tr>
+</table>
+
+<br />
+<font style="font-size:11px">
+Copyright &copy; 2004,2005 <a href="http://www.o-wars.de" target="_new">www.o-wars.de</a>, all rights reserved / power`d by <a href="http://www.all-net-solutions.de" target="_new">www.all-net-solutions.de</a>
+</font>
+</body>
+</html>

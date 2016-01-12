@@ -1,0 +1,70 @@
+<script type="text/javascript">
+<!--
+function berechne() {
+	var to = Math.abs(document.getElementsByName("ubl")[0].value);
+	// if (to == 0) { to = 1; }
+	var y1 = Math.floor(to / 25 + 1);
+	var x1 = to - ( ( y1 - 1 ) * 25);
+	if (x1 == 0) { 
+		x1 = 25; 
+		y1 = y1 - 1;
+	}
+	var zz1 = y1 / 20;
+	var z1 = Math.floor(zz1);
+	if (zz1 != z1){z1 = z1}
+	else {z1 = zz1 - 1;}
+	if (z1 != 0){ y1 = y1 - 20 * z1;}
+	var x2 = %x%;
+	var y2 = %y%;
+	var z2 = %z%;
+	var e;
+	
+	if ( x2 > x1 ) { e = x2 - x1; }
+	else { e = x1 - x2; }
+	
+	if ( ( y2 + ( z2 * 20 ) ) > ( y1 + ( z1 * 20 ) ) ) { e = e + ( y2 + ( z2 * 20 ) ) - ( y1 + ( z1 * 20 ) ); }
+	else { e = e + ( y1 + ( z1 * 20 ) ) - ( y2 + ( z2 * 20 ) ); }	
+	
+	var color  = '';
+	var color2 = '';
+	
+	if ( e*2.5 > 50 ) { 
+		color  = '<font class="red">';
+		color2 = '</font>';
+	}
+	
+	document.getElementById("entfernung").innerHTML=color+''+e*2.5+''+color2;
+}
+// END -->
+</script>	
+
+<br />
+<br />
+<table border="1" cellspacing="0" style="background-color:#e2e2e2; font-size: 12px; width: 480px;">
+	<tr style="background-image:url(%template_path%table_head.gif);" align="center">
+		<td>
+			<b>Umzugsfunktion:</b>
+		</td>
+	</tr>
+	<tr>
+		<td style="text-align:justify" align="center">
+			Maximale Reichweite: <b>50km</b><br />
+			Es darf <b>nicht hinter die letzte Basis</b> gezogen werden.<br />
+			Die Umzugsfunktion kann <b>nur alle 14 Tage </b>benutzt werden. <br />
+			Alle in der Fabrik in Auftrag gegebenen Einheiten gehen verloren.<br />
+			Die aktuelle <b>Forschung wird abgebrochen</b>, wenn gerade geforscht wird.<br />
+			Das aktuelle <b>Geb&auml;ude wird abgebrochen</b>, wenn gerade gebaut wird.<br />
+			S&auml;mmtliche <b>Berichte werden vernichtet</b>. (Reisswolf und dann Benzin)<br />
+			S&auml;mmtliche Statistiken, Nachrichten und Foreneintr&auml;ge ziehen mit um.<br />
+			<br />
+			Die Einheiten, die sich im Hangar befinden ziehen mit um. Einheiten, die sich auf einer Mission befinden, brechen ihre Mission ab 
+			und befinden sich dann auf einer r&uuml;ckkehrenden Mission zur neuen Basis.
+			Die Einheiten sind dann nach 1 bis 4 Stunden wieder da. <br />
+			<br />
+			<br />
+			<center>
+				%status%
+			</center>
+		</td>
+	</tr>
+</table>

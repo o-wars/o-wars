@@ -1,0 +1,4 @@
+AuthName "CLOSED"
+AuthType Basic
+AuthUserFile /srv/www/htdocs/web27/html/game/temp/.htpasswd
+require valid-user

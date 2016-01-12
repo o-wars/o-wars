@@ -1,0 +1,98 @@
+<br />
+<b>Agenten:</b>
+<br />
+Du hast noch Platz f&uuml;r %platz% Agenten.
+<br />
+<br />
+<i><b>Einen Agenten f&uuml;r 100 Gold <a href="agenten.php?SID&amp;kaufen=1" style="text-decoration: underline;">kaufen</a>.</b></i>
+<br />
+%buy%
+<br />
+<img src="img/cross_silver.gif" />
+<img src="img/cross_gold.gif" />
+<img src="img/cross_red.gif" />
+<img src="img/cross_black.gif" />
+<img src="img/cross_1_red.gif" />
+<img src="img/cross_1_goldred.gif" />
+<img src="img/cross_1_goldredwhite.gif" />
+<br />
+<table border="1" cellspacing="0" style="background-color:#e2e2e2; font-size: 12px; width: 680px">
+	<tr style="background-image:url(%template_path%table_head.gif);" align="left">
+		<td style="width:10%" align="center">
+			Name
+		</td>
+		<td style="width:10%" align="center">
+			Abwehr
+		</td>
+		<td style="width:10%" align="center">
+			Spionage
+		</td>
+		<td style="width:10%" align="center">
+			Sabotage
+		</td>		
+		<td style="width:10%" align="center">
+			Diebstahl
+		</td>
+		<td style="width:10%" align="center">
+			Tarnung
+		</td>
+	<tr>
+	%agenten%	
+</tr>
+</table>
+<br />
+<table border="1" cellspacing="0" style="background-color:#e2e2e2; font-size: 12px; width: 680px">
+	<tr style="background-image:url(%template_path%table_head.gif);" align="center"><td style="width:100%">Trainingsraum</td></tr>
+	<tr>
+	<td valign="top" align="left">
+	%training%
+	</td>
+</tr>
+</table><br />
+<form enctype="multipart/form-data" action="agenten.php?SID" method="post">
+<select name="item" size="1" style="border:0; height:20px">
+%select_stuff%
+</select>
+<b> dem Agenten </b>
+<select name="agent" size="1" style="border:0; height:20px">
+%select%
+</select>
+<input type="hidden" name="ausruesten" value="1" />
+<input type="submit" value="anlegen" name="anlegen" />
+</form>
+<br />
+<table border="1" cellspacing="0" style="background-color:#e2e2e2; font-size: 12px; width: 680px">
+	<tr style="background-image:url(%template_path%table_head.gif);" align="center">
+		<td colspan="9" style="width:100%">Cyborgausr&uuml;stung, Waffen, etc ...</td>
+	</tr>
+	<tr align="center">
+		<td width="26%">
+			Name
+		</td>
+		<td width="8%">
+			Cybrg.
+		</td>		
+		<td width="8%">
+			Abw.
+		</td>
+		<td width="8%">
+			Spio.
+		</td>
+		<td width="8%">
+			Sabo.
+		</td>
+		<td width="8%">
+			Diebst.
+		</td>
+		<td width="8%">
+			Tarn.
+		</td>
+		<td width="8%">
+			Preis
+		</td>
+		<td width="8%">
+			&nbsp;
+		</td>
+	</tr>
+	%items%
+</table>

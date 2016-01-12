@@ -1,0 +1,394 @@
+<?php
+//////////////////////////////////
+// Komplettuebersicht           //
+//////////////////////////////////
+// Letzte Aenderung: 15.09.2004 //
+// Version:          0.0        //
+//////////////////////////////////
+// Kommentare:
+// - Ressistand
+// - Status Spieler
+// - Uebersicht Missionen
+// - Uebersicht klon-Missionen
+// - Status Nachrichten
+//////////////////////////////////
+
+// starten der session
+session_name('SESSION');
+session_start();
+
+// Basisfunktionen laden
+include "functions.php";
+include "einheiten_preise.php";
+// check session
+logincheck();
+
+// html head setzen
+$content = template('head');
+$content = tag2value('onload', '', $content);
+
+// get playerinfo template and replace tags
+$status  = template('playerinfo');
+$status  = tag2value('name', $_SESSION['user']['name'], $status);
+$status  = tag2value('base', $_SESSION['user']['base'], $status);
+$status  = tag2value('ubl',  $_SESSION['user']['omni'], $status);
+$status  = tag2value('points',$_SESSION['user']['points'], $status);
+$content .= $status;
+unset($status);
+$hangar = new_units_check($_SESSION['user']['omni']);
+
+$dbh = db_connect();
+$ressis = ressistand($_SESSION[user][omni]);
+// einheiten verkaufen
+if ($_GET['id'] and $_GET['action'] == 'sell' and $hangar['einh'.$_GET['id']] > 0){ 
+	$hangar['einh'.$_GET['id']]--;
+	$select = "UPDATE `ressis` SET `gold` = '".($ressis[gold]+$einh[$_GET['id']]['vk'])."' WHERE `omni` = '".$_SESSION['user']['omni']."';";
+	mysql_query($select, $dbh);
+	$select = "UPDATE `hangar` SET `einh".$_GET['id']."` = '".$hangar['einh'.$_GET['id']]."' WHERE `omni` = '".$_SESSION['user']['omni']."';";
+	mysql_query($select, $dbh);
+}
+
+// einheiten kaufen
+if ($_GET['id'] and $_GET['action'] == 'buy' and $ressis['gold'] > $einh[$_GET['id']]['ek']){ 
+	$select = "UPDATE `ressis` SET `gold` = '".($ressis[gold]-$einh[$_GET['id']]['ek'])."' WHERE `omni` = '".$_SESSION['user']['omni']."';";
+	mysql_query($select, $dbh);
+	$einheit[$_GET['id']]++;
+	$rand = rand(20,40);
+	$select = "INSERT INTO `missionen` ( `id` , `type` , `start` , `ziel` , `started` , `ankunft` , `return` , `speed` , `parsed` , `einh1` , `einh2` , `einh3` , `einh4` , `einh5` , `einh6` , `einh7` , `einh8` , `einh9` , `einh10` , `einh11` , `einh12` , `einh13` , `einh14` , `einh15` , `eisen` , `titan` , `oel` , `uran` , `gold` , `chanje` ) VALUES ( '', '3', '0', '".$_SESSION['user']['omni']."', '".date('U')."', '".(date('U')+($rand*60))."', '".(date('U')+20000)."', '666', '0', '".$einheit[1]."', '".$einheit[2]."', '".$einheit[3]."', '".$einheit[4]."', '".$einheit[5]."', '".$einheit[6]."', '".$einheit[7]."', '".$einheit[8]."', '".$einheit[9]."', '".$einheit[10]."', '".$einheit[11]."', '".$einheit[12]."', '".$einheit[13]."', '".$einheit[14]."', '".$einheit[15]."', '0', '0', '0', '0', '0', '0' );";
+	mysql_query($select, $dbh);
+	
+	$eid = mysql_insert_id($dbh);
+	
+	$select = "INSERT INTO `events` ( `id` , `type` , `eid` , `date` ) VALUES ('', '1', '".$eid."', '".(date('U')+($rand*60))."');";
+	$selectResult   = mysql_query($select, $dbh);
+	
+	$status .= '<center>Die &Uuml;berf&uuml;hrung wurde gestartet. Die Einheit trifft in '.$rand.' Minuten ein.</center>';
+}
+
+// ressourcen ver/kaufen
+$select = "SELECT einheit, SUM(menge) as ges FROM `markt` WHERE `type` = '0' AND `einheit` = '1' GROUP BY einheit;";
+$result = mysql_query($select);
+$row = mysql_fetch_array($result);
+$ges['eisen'] = $row['ges']+50000;
+
+$select = "SELECT einheit, SUM(menge) as ges FROM `markt` WHERE `type` = '0' AND `einheit` = '2' GROUP BY einheit;";
+$result = mysql_query($select);
+$row = mysql_fetch_array($result);
+$ges['titan'] = $row['ges']+50000;
+
+$select = "SELECT einheit, SUM(menge) as ges FROM `markt` WHERE `type` = '0' AND `einheit` = '3' GROUP BY einheit;";
+$result = mysql_query($select);
+$row = mysql_fetch_array($result);
+$ges['oel'] = $row['ges']+50000;
+
+$select = "SELECT einheit, SUM(menge) as ges FROM `markt` WHERE `type` = '0' AND `einheit` = '4' GROUP BY einheit;";
+$result = mysql_query($select);
+$row = mysql_fetch_array($result);
+$ges['uran'] = $row['ges']+50000;
+
+$select = "SELECT einheit, SUM(menge) as ges FROM `markt` WHERE `type` = '1' AND `einheit` = '1' GROUP BY einheit;";
+$result = mysql_query($select);
+$row = mysql_fetch_array($result);
+$mges['eisen'] = $row['ges']+50000;
+
+$select = "SELECT einheit, SUM(menge) as ges FROM `markt` WHERE `type` = '1' AND `einheit` = '2' GROUP BY einheit;";
+$result = mysql_query($select);
+$row = mysql_fetch_array($result);
+$mges['titan'] = $row['ges']+50000;
+
+$select = "SELECT einheit, SUM(menge) as ges FROM `markt` WHERE `type` = '1' AND `einheit` = '3' GROUP BY einheit;";
+$result = mysql_query($select);
+$row = mysql_fetch_array($result);
+$mges['oel'] = $row['ges']+50000;
+
+$select = "SELECT einheit, SUM(menge) as ges FROM `markt` WHERE `type` = '1' AND `einheit` = '4' GROUP BY einheit;";
+$result = mysql_query($select);
+$row = mysql_fetch_array($result);
+$mges['uran'] = $row['ges']+50000;
+
+$ek['eisen'] = number_format(300 / 100 * $ges['eisen'] / (($ges['eisen'] + $mges['eisen'])/100),2);
+$vk['eisen'] = number_format(300 / 100 * $ges['eisen'] / (($ges['eisen'] + $mges['eisen'])/100) / 2,2);
+$ek['titan'] = number_format(400 / 100 * $ges['titan'] / (($ges['titan'] + $mges['titan'])/100),2);
+$vk['titan'] = number_format(400 / 100 * $ges['titan'] / (($ges['titan'] + $mges['titan'])/100) / 2,2);
+$ek['oel']   = number_format(350 / 100 * $ges['oel'] / (($ges['oel'] + $mges['oel'])/100),2);
+$vk['oel']   = number_format(350 / 100 * $ges['oel'] / (($ges['oel'] + $mges['oel'])/100) / 2,2);
+$ek['uran']  = number_format(500 / 100 * $ges['uran'] / (($ges['uran'] + $mges['uran'])/100),2);
+$vk['uran']  = number_format(500 / 100 * $ges['uran'] / (($ges['uran'] + $mges['uran'])/100) / 2,2);
+
+$select = "SELECT * FROM `missionen` WHERE `ziel` = '".$_SESSION[user][omni]."' AND `type` = '1' AND `ankunft` > '".date(U)."' AND `parsed` != '1' GROUP BY `ankunft` ASC;";
+$result = mysql_query($select,$dbh);
+
+if (mysql_num_rows($result) > 0){ $attack = 1; }
+
+if ($_POST['ressis'] and $attack != 1){ 
+	$_POST['ek_eisen'] = number_format($_POST['ek_eisen'],0,'','');
+	$_POST['vk_eisen'] = number_format($_POST['vk_eisen'],0,'','');
+	$_POST['ek_titan'] = number_format($_POST['ek_titan'],0,'','');
+	$_POST['vk_titan'] = number_format($_POST['vk_titan'],0,'','');
+	$_POST['ek_oel'] = number_format($_POST['ek_oel'],0,'','');
+	$_POST['vk_oel'] = number_format($_POST['vk_oel'],0,'','');
+	$_POST['ek_uran'] = number_format($_POST['ek_uran'],0,'','');
+	$_POST['vk_uran'] = number_format($_POST['vk_uran'],0,'','');
+	
+	
+	$kaufen += $_POST['ek_eisen'] * $ek['eisen']/ 100;
+	$kaufen += $_POST['ek_titan'] * $ek['titan']/ 100;
+	$kaufen += $_POST['ek_oel'] * $ek['oel']/ 100;
+	$kaufen += $_POST['ek_uran'] * $ek['uran']/ 100;
+	
+	$verkaufen += $_POST['vk_eisen'] * $vk['eisen']/ 100;
+	$verkaufen += $_POST['vk_titan'] * $vk['titan']/ 100;
+	$verkaufen += $_POST['vk_oel'] * $vk['oel']/ 100;
+	$verkaufen += $_POST['vk_uran'] * $vk['uran']/ 100;	
+	
+	if ($kaufen > $verkaufen) { $preis = $kaufen - $verkaufen; }
+	else { $preis = $verkaufen - $kaufen; }
+	
+	$eisen = $ressis['eisen'] - $_POST['vk_eisen'];
+	$titan = $ressis['titan'] - $_POST['vk_titan'];
+	$oel   = $ressis['oel']   - $_POST['vk_oel'];
+	$uran  = $ressis['uran']  - $_POST['vk_uran'];
+	$gold  = $ressis['gold']  + ($verkaufen - $kaufen);
+	
+	if ($eisen < 0) { $status = '<b>Du hast nicht genug Eisen f&uuml;r diesen Handel.</b></body></html>'; }
+	elseif ($titan < 0) { $status = '<b>Du hast nicht genug Titan f&uuml;r diesen Handel.</b></body></html>'; }
+	elseif ($oel   < 0) { $status = '<b>Du hast nicht genug Oel f&uuml;r diesen Handel.</b></body></html>'; }
+	elseif ($uran  < 0) { $status = '<b>Du hast nicht genug Uran f&uuml;r diesen Handel.</b></body></html>'; }
+	elseif ($gold  < 0) { $status = '<b>Du hast nicht genug Gold f&uuml;r diesen Handel.</b></body></html>'; }
+	else {
+		//if ($kaufen < 1 and $kaufen > 0){ $kaufen = 1; } 
+		$kaufen = number_format($kaufen,2,',','.');
+		// if ($verkaufen < 1 and $verkaufen > 0){ $verkaufen = 1; } 
+		$verkaufen = number_format($verkaufen,2,',','.');
+		//if ($preis < 1 and $preis > 0){ $preis = 1; } 
+		$preis = number_format($preis,2,',','.');
+		$status = '<b>Du hast f&uuml;r '.$kaufen.' Gold gekauft, sowie f&uuml;r '.$verkaufen.' Gold verkauft.<br />Das macht dann '.$preis;	
+		if ($kaufen > $verkaufen) { $status .= ' Gold zu unseren Gunsten.<br />'; }
+		else { $status .= ' zu deinen Gunsten.</b>'; }
+		
+		$select = "UPDATE `ressis` SET `eisen` = '".$eisen."', `titan` = '".$titan."', `oel` = '".$oel."', `uran` = '".$uran."', `gold` = '".$gold."' WHERE `omni` = '".$_SESSION['user']['omni']."' LIMIT 1 ;";
+		mysql_query($select);
+
+		if ($_POST['vk_eisen']) { $select = "INSERT INTO `markt` ( `einheit` , `menge` , `type` , `date` ) VALUES ( '1', '".$_POST['vk_eisen']."', '1', '".date('U')."' );"; mysql_query($select); }
+		if ($_POST['ek_eisen']) { $select = "INSERT INTO `markt` ( `einheit` , `menge` , `type` , `date` ) VALUES ( '1', '".$_POST['ek_eisen']."', '0', '".date('U')."' );"; mysql_query($select); }
+		if ($_POST['vk_titan']) { $select = "INSERT INTO `markt` ( `einheit` , `menge` , `type` , `date` ) VALUES ( '2', '".$_POST['vk_titan']."', '1', '".date('U')."' );"; mysql_query($select); }
+		if ($_POST['ek_titan']) { $select = "INSERT INTO `markt` ( `einheit` , `menge` , `type` , `date` ) VALUES ( '2', '".$_POST['ek_titan']."', '0', '".date('U')."' );"; mysql_query($select); }
+		if ($_POST['vk_oel']) { $select = "INSERT INTO `markt` ( `einheit` , `menge` , `type` , `date` ) VALUES ( '3', '".$_POST['vk_oel']."', '1', '".date('U')."' );"; mysql_query($select); }
+		if ($_POST['ek_oel']) { $select = "INSERT INTO `markt` ( `einheit` , `menge` , `type` , `date` ) VALUES ( '3', '".$_POST['ek_oel']."', '0', '".date('U')."' );"; mysql_query($select); }
+		if ($_POST['vk_uran']) { $select = "INSERT INTO `markt` ( `einheit` , `menge` , `type` , `date` ) VALUES ( '4', '".$_POST['vk_uran']."', '1', '".date('U')."' );"; mysql_query($select); }
+		if ($_POST['ek_uran']) { $select = "INSERT INTO `markt` ( `einheit` , `menge` , `type` , `date` ) VALUES ( '4', '".$_POST['ek_uran']."', '0', '".date('U')."' );"; mysql_query($select); }
+		
+		if ($kaufen > 0){
+			$rand = rand(20,40);
+			$select = "INSERT INTO `missionen` ( `id` , `type` , `start` , `ziel` , `started` , `ankunft` , `return` , `speed` , `parsed` , `einh1` , `einh2` , `einh3` , `einh4` , `einh5` , `einh6` , `einh7` , `einh8` , `einh9` , `einh10` , `einh11` , `einh12` , `einh13` , `einh14` , `einh15` , `eisen` , `titan` , `oel` , `uran` , `gold` , `chanje` ) VALUES ( '', '2', '0', '".$_SESSION['user']['omni']."', '".date('U')."', '".(date('U')+($rand*60))."', '".(date('U')+20000)."', '666', '0', '".$eh[1]."', '".$eh[2]."', '".$eh[3]."', '".$eh[4]."', '".$eh[5]."', '".$eh[6]."', '".$eh[7]."', '".$eh[8]."', '".$eh[9]."', '100', '100', '".$eh[12]."', '".$eh[13]."', '".$eh[14]."', '".$eh[15]."', '".number_format($_POST['ek_eisen'],0,'','')."', '".number_format($_POST['ek_titan'],0,'','')."', '".number_format($_POST['ek_oel'],0,'','')."', '".number_format($_POST['ek_uran'],0,'','')."', '0', '0' );";
+			mysql_query($select, $dbh);
+		
+			$eid = mysql_insert_id($dbh);
+	
+			$select = "INSERT INTO `events` ( `id` , `type` , `eid` , `date` ) VALUES ('', '1', '".$eid."', '".(date('U')+($rand*60))."');";
+			$selectResult   = mysql_query($select, $dbh);
+			$status .= '<br /><b>Der Transport der Ressourcen zu deiner Basis ist nun gestartet.</b>';
+		}
+		$select = "SELECT einheit, SUM(menge) as ges FROM `markt` WHERE `type` = '0' AND `einheit` = '1' GROUP BY einheit;";
+		$result = mysql_query($select);
+		$row = mysql_fetch_array($result);
+		$ges['eisen'] = $row['ges']+50000;
+
+		$select = "SELECT einheit, SUM(menge) as ges FROM `markt` WHERE `type` = '0' AND `einheit` = '2' GROUP BY einheit;";
+		$result = mysql_query($select);
+		$row = mysql_fetch_array($result);
+		$ges['titan'] = $row['ges']+50000;
+
+		$select = "SELECT einheit, SUM(menge) as ges FROM `markt` WHERE `type` = '0' AND `einheit` = '3' GROUP BY einheit;";
+		$result = mysql_query($select);
+		$row = mysql_fetch_array($result);
+		$ges['oel'] = $row['ges']+50000;
+
+		$select = "SELECT einheit, SUM(menge) as ges FROM `markt` WHERE `type` = '0' AND `einheit` = '4' GROUP BY einheit;";
+		$result = mysql_query($select);
+		$row = mysql_fetch_array($result);
+		$ges['uran'] = $row['ges']+50000;
+
+		$select = "SELECT einheit, SUM(menge) as ges FROM `markt` WHERE `type` = '1' AND `einheit` = '1' GROUP BY einheit;";
+		$result = mysql_query($select);
+		$row = mysql_fetch_array($result);
+		$mges['eisen'] = $row['ges']+50000;
+
+		$select = "SELECT einheit, SUM(menge) as ges FROM `markt` WHERE `type` = '1' AND `einheit` = '2' GROUP BY einheit;";
+		$result = mysql_query($select);
+		$row = mysql_fetch_array($result);
+		$mges['titan'] = $row['ges']+50000;
+
+		$select = "SELECT einheit, SUM(menge) as ges FROM `markt` WHERE `type` = '1' AND `einheit` = '3' GROUP BY einheit;";
+		$result = mysql_query($select);
+		$row = mysql_fetch_array($result);
+		$mges['oel'] = $row['ges']+50000;
+
+		$select = "SELECT einheit, SUM(menge) as ges FROM `markt` WHERE `type` = '1' AND `einheit` = '4' GROUP BY einheit;";
+		$result = mysql_query($select);
+		$row = mysql_fetch_array($result);
+		$mges['uran'] = $row['ges']+50000;
+
+		
+$ek['eisen'] = number_format(300 / 100 * $ges['eisen'] / (($ges['eisen'] + $mges['eisen'])/100),2);
+$vk['eisen'] = number_format(300 / 100 * $ges['eisen'] / (($ges['eisen'] + $mges['eisen'])/100) / 2,2);
+$ek['titan'] = number_format(400 / 100 * $ges['titan'] / (($ges['titan'] + $mges['titan'])/100),2);
+$vk['titan'] = number_format(400 / 100 * $ges['titan'] / (($ges['titan'] + $mges['titan'])/100) / 2,2);
+$ek['oel']   = number_format(400 / 100 * $ges['oel'] / (($ges['oel'] + $mges['oel'])/100),2);
+$vk['oel']   = number_format(400 / 100 * $ges['oel'] / (($ges['oel'] + $mges['oel'])/100) / 2,2);
+$ek['uran']  = number_format(500 / 100 * $ges['uran'] / (($ges['uran'] + $mges['uran'])/100),2);
+$vk['uran']  = number_format(500 / 100 * $ges['uran'] / (($ges['uran'] + $mges['uran'])/100) / 2,2);
+	}
+}
+
+// ressourcen berechnen und ausgeben
+$ressis = ressistand($_SESSION[user][omni]);
+$content .= $ressis['html'];
+
+$content .= '<br />';
+
+$select = "SELECT * FROM `gebauede` WHERE `omni` = '".$_SESSION[user][omni]."';";
+$selectResult   = mysql_query($select, $dbh);
+$gebaeude = mysql_fetch_array($selectResult);
+
+// forschungen
+$select = "SELECT * FROM `forschungen` WHERE `omni` = '".($_SESSION[user][omni])."';";
+$result = mysql_query($select, $dbh);
+$forschung  = mysql_fetch_array($result);
+
+// einheiten verkaufen
+unset($einheit);
+do {
+$einheit++;
+if ($hangar['einh'.$einheit]){ $units .= '<tr onMouseOver=this.style.backgroundColor="#a2a2a2" onMouseOut=this.style.backgroundColor="#e2e2e2"><td>'.$einh[$einheit]['name'].'</td><td align="center">'.$hangar['einh'.$einheit].'</td><td align="center">'.$einh[$einheit]['ek'].'</td><td align="center">'.$einh[$einheit]['vk'].'</td><td align="center"><a href="markt.php?'.SID.'&amp;action=sell&amp;id='.$einheit.'">einen verkaufen</td</tr>'; }
+} while ($einheit < 15);
+if ($units){ $content .= '<span style="font-size: 12px";><b>Einheiten verkaufen:</b></span><table border="1" cellspacing="0" style="background-color:#e2e2e2; font-size: 12px"><tr style="background-image:url(templates/standard/table_head.gif);" align="center"><td style="width:140px"><b>Einheit</b></td><td style="width:70px"><b>Anzahl<b></td><td style="width:70px"><b>EK</b></td><td style="width:70px"><b>VK</b></td><td style="width:150px;">&nbsp;</td></tr>'.$units.'</table><br />'; }
+
+// einheiten kaufen
+unset($units);
+$einheit = 0;
+do {
+$einheit++;
+$link = '<a href="markt.php?'.SID.'&amp;action=buy&amp;id='.$einheit.'">einen kaufen</a>';
+if ($einheit ==  5 and $gebaeude['fahrwege'] < 1)   	{$link = '<font color="red">zu niedrige Fahrwege</font>';}
+elseif ($einheit ==  6 and $gebaeude['fahrwege'] < 3)   {$link = '<font color="red">zu niedrige Fahrwege</font>';}
+elseif ($einheit ==  7 and $gebaeude['fahrwege'] < 6)   {$link = '<font color="red">zu niedrige Fahrwege</font>';}
+elseif ($einheit ==  8 and $gebaeude['fahrwege'] < 8)   {$link = '<font color="red">zu niedrige Fahrwege</font>';}
+elseif ($einheit ==  9 and $gebaeude['fahrwege'] < 6)   {$link = '<font color="red">zu niedrige Fahrwege</font>';}
+elseif ($einheit == 10 and $gebaeude['fahrwege'] < 10)  {$link = '<font color="red">zu niedrige Fahrwege</font>';}
+elseif ($einheit == 11 and $gebaeude['fahrwege'] < 15)  {$link = '<font color="red">zu niedrige Fahrwege</font>';}
+elseif ($einheit == 12 and $gebaeude['fahrwege'] < 1)   {$link = '<font color="red">zu niedrige Fahrwege</font>';}
+elseif ($einheit == 13 and $gebaeude['fahrwege'] < 3)   {$link = '<font color="red">zu niedrige Fahrwege</font>';}
+elseif ($einheit == 14 and $gebaeude['fahrwege'] < 1)   {$link = '<font color="red">zu niedrige Fahrwege</font>';}
+elseif ($einheit == 15 and $gebaeude['fahrwege'] < 3)   {$link = '<font color="red">zu niedrige Fahrwege</font>';}
+
+$units .= '<tr onMouseOver=this.style.backgroundColor="#a2a2a2" onMouseOut=this.style.backgroundColor="#e2e2e2"><td>'.$einh[$einheit]['name'].'</td><td align="center">'.$hangar['einh'.$einheit].'</td><td align="center">'.$einh[$einheit]['ek'].'</td><td align="center">'.$einh[$einheit]['vk'].'</td><td align="center">'.$link.'</td</tr>';
+} while ($einheit < 15);
+if ($units){ $content .= '<span style="font-size: 12px";><b>Einheiten kaufen:</b></span><table border="1" cellspacing="0" style="background-color:#e2e2e2; font-size: 12px"><tr style="background-image:url(templates/standard/table_head.gif);" align="center"><td style="width:140px"><b>Einheit</b></td><td style="width:70px"><b>Anzahl<b></td><td style="width:70px"><b>EK</b></td><td style="width:70px"><b>VK</b></td><td style="width:145px;">&nbsp;</td></tr>'.$units.'</table><br />'; }
+
+if ($attack == 1){
+	$content .= '<br /><br /><b>Du kannst im Moment nicht mit Rohstoffen handeln, da du Angegriffen wirst.</b><br />';
+}
+
+$content .= '<br /><form enctype="multipart/form-data" action="markt.php?'.SID.'" method="post">
+<input type="hidden" name="ressis" value="1">
+<b>Rohstoffhandel:</b><br />
+(alle Preise verstehen sich in Gold je 100 Einheiten, 
+<br />
+sollten Kommastellen entstehen wird entsprechend gerundet.)
+<table border="1" cellspacing="0" style="background-color:#e2e2e2; font-size: 12px">
+	<tr style="background-image:url(templates/standard/table_head.gif);" align="center">
+		<td style="width:140px">
+			<b>Rohstoff</b>
+		</td>
+		<td style="width:70px">
+			<b>kaufen</b>
+		</td>
+		<td style="width:70px">
+			<b>verkaufen</b>
+		</td>
+		<td style="width:95px">
+			<b>kaufen</b>
+		</td>
+		<td style="width:95px;">
+			<b>verkaufen</b>
+		</td>
+	</tr>
+	<tr onMouseOver=this.style.backgroundColor="#a2a2a2" onMouseOut=this.style.backgroundColor="#e2e2e2">
+		<td style="width:140px">
+			Eisen
+		</td>
+		<td align="right" style="width:70px">
+			'.$ek['eisen'].' G&nbsp;
+		</td>
+		<td align="right" style="width:70px">
+			'.$vk['eisen'].' G&nbsp;
+		</td>
+		<td style="width:95px">
+			<input type="text" name="ek_eisen" style="width:100%" />
+		</td>
+		<td style="width:95px;">
+			<input type="text" name="vk_eisen" style="width:100%" />
+		</td>
+	</tr>
+	<tr onMouseOver=this.style.backgroundColor="#a2a2a2" onMouseOut=this.style.backgroundColor="#e2e2e2">
+		<td style="width:140px">
+			Titan
+		</td>
+		<td align="right" style="width:70px">
+			'.$ek['titan'].' G&nbsp;
+		</td>
+		<td align="right" style="width:70px">
+			'.$vk['titan'].' G&nbsp;
+		</td>
+		<td style="width:95px">
+			<input type="text" name="ek_titan" style="width:100%" />
+		</td>
+		<td style="width:95px;">
+			<input type="text" name="vk_titan" style="width:100%" />
+		</td>
+	</tr>
+	<tr onMouseOver=this.style.backgroundColor="#a2a2a2" onMouseOut=this.style.backgroundColor="#e2e2e2">
+		<td style="width:140px">
+			Oel 
+		</td>
+		<td align="right" style="width:70px">
+			'.$ek['oel'].' G&nbsp;
+		</td>
+		<td align="right" style="width:70px">
+			'.$vk['oel'].' G&nbsp;
+		</td>
+		<td style="width:95px">
+			<input type="text" name="ek_oel" style="width:100%" />
+		</td>
+		<td style="width:95px;">
+			<input type="text" name="vk_oel" style="width:100%" />
+		</td>
+	</tr>
+	<tr onMouseOver=this.style.backgroundColor="#a2a2a2" onMouseOut=this.style.backgroundColor="#e2e2e2">
+		<td style="width:140px">
+			Uran
+		</td>
+		<td align="right" style="width:70px">
+			'.$ek['uran'].' G&nbsp;
+		</td>
+		<td align="right" style="width:70px">
+			'.$vk['uran'].' G&nbsp;
+		</td>
+		<td style="width:95px">
+			<input type="text" name="ek_uran" style="width:100%" />
+		</td>
+		<td style="width:95px;">
+			<input type="text" name="vk_uran" style="width:100%" />
+		</td>
+	</tr>
+</table>
+<br />
+<input type="submit" name="bestellen" value="bestellen" />
+</form>
+';
+
+//$content .= '<br /><span style="font-size: 12px";><b>Wichtig:</b> Du musst die f&uuml;r den bestellten Fahrzeugtyp passenden Fahrwege haben, da sonst das bestellte Fahrzeug verloren geht.</span>';
+// generierte seite ausgeben
+echo $content.'<br /><span style="font-size: 12px";><b><br />'.$status.'</b></span></body></html>';
+?>

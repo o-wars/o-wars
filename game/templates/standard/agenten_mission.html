@@ -1,0 +1,82 @@
+<br /><br />
+<table border="1" cellspacing="0" style="background-color:#e2e2e2; font-size: 12px; width: 680px">
+	<tr style="background-image:url(%template_path%table_head.gif);" align="center"><td style="width:100%"><b>Agentenmission starten:</b></td></tr>
+	<tr>
+	<td valign="top" align="left">
+		<form enctype="multipart/form-data" action="agentenmission.php?SID" method="post">
+		Den Agenten <b>%agent%</b> zur Basis <input type="text" name="target" style="width: 60px; height: 18px;" /> schicken.<br />
+		<table border="0">
+			<tr>
+				<td>
+					Missionsziel: 
+				</td>
+				<td>
+					<select name="type" />
+						<option value="spio">
+							Spionage -0%
+						</option>
+						<option value="sabo_einh">
+							Sabotage (Einheiten) -0%
+						</option>	
+						<option value="sabo_basis">
+							Sabotage (Basis) -25%
+						</option>	
+						<option value="diebstahl_einh">
+							Diebstahl (Einheiten) -0%
+						</option>							
+						<option value="diebstahl_ress">
+							Diebstahl (Ressourcen) -0%
+						</option>							
+					</select>
+					(-X% auf Missionsziel)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Drogen: 
+				</td>
+				<td>
+					<select name="drugs" />
+						<option value="0">
+							keine
+						</option>					
+						<option value="1">
+							Amphetamin +25%/-25%
+						</option>
+						<option value="2">
+							MDMA +50%/-50%
+						</option>	
+						<option value="3">
+							Perventin +100%/-100%
+						</option>	
+					</select>
+					(+X% auf Missionsziel, -X% auf Tarnung und Abwehr)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Fahrzeug: 
+				</td>
+				<td>
+					<select name="fahrzeug" />
+						<option value="0">
+							keines (10 km/h)
+						</option>					
+						<option value="1">
+							K&uuml;belwagen (65 km/h)
+						</option>
+						<option value="2">
+							Motorrad (80 km/h)
+						</option>
+					</select>
+				</td>
+			</tr>			
+		</table>
+		<br />
+		<input type="hidden" value="%agent_id%" name="id" />
+		<input type="hidden" value="1" name="berechnen" />
+		<center><input type="submit" value="Mission Planen"></center>
+		</form>
+	</td>
+</tr>
+</table>

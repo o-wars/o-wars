@@ -1,0 +1,291 @@
+body
+  {
+  margin-top:       .5em;
+  margin-left:      .5em;
+  margin-right:     .5em;
+  margin-bottom:    0em;
+  padding-top:      0;
+  padding-left:     0;
+  padding-right:    0;
+  padding-bottom:   0;
+  color:            black;
+  font-size:        12px;
+  font-family:      Arial;
+  background-color:#efd48d;
+  }
+
+input
+  {
+//background-image:url('img/input.gif');
+font-family: Arial;
+font-size: 12pt;
+color:#000000;
+border: solid #000000 1pt;
+background-color:#e0e0e0;
+  }
+
+
+
+select
+  {
+font-family: Arial;
+font-size: 10pt;
+color:#000000;
+border: solid #000000 1pt;
+background-color:#e2e2e2;
+  }
+
+textarea
+  {
+font-family: Arial;
+font-size: 10pt;
+color:#000000;
+border: solid #000000 1pt;
+background-color:#e2e2e2;
+scrollbar-base-color:#e2e2e2;
+scrollbar-3dlight-color:#000000;
+scrollbar-arrow-color:#000000;
+scrollbar-darkshadow-color:#e2e2e2;
+scrollbar-face-color:#e2e2e2;
+scrollbar-highlight-color:#e2e2e2;
+scrollbar-shadow-color:#000000;
+scrollbar-track-color:#e2e2e2;
+  }
+
+/* ****************** TABLES ****************** */
+table, tr
+  {
+  /*
+  border-collapse:    collapse;
+  border-spacing:     0em 0em;
+  border-style:       hidden;
+  border:             none 0em;
+  margin:             0em;
+  padding:            0em;*/
+  color:              black;
+  text-decoration:    none;
+  border-color:       black;
+  /*border-style:       none;*/
+  color:            black;
+  font-size:        12px;
+  font-family:      Arial;
+  background-color:#e2e2e2;
+  }
+  
+/* ****************** IMAGES ****************** */
+img
+  {
+  word-spacing:       normal;
+  letter-spacing:     normal;
+  text-transform:     none;
+  text-decoration:    none;
+  border-style:       none;
+  }
+
+
+/* ****************** LINKS ****************** */
+a:link 	  { color:#333333; text-decoration:none; }
+a:visited { color:#333333; text-decoration:none; }
+a:hover	  { color:#000000; text-decoration:underline; }
+a:active  { color:#333333; text-decoration:none; }
+
+/* ****************** Index ****************** */
+
+a.index
+  {
+  font-size:          12px;
+  font-family:        Arial;
+  text-decoration:    underline;
+  color:              #fff;
+  }
+
+a.index:visited
+  {
+  font-size:          12px;
+  color:              #ccc;
+  }
+
+a.index_cur
+  {
+  font-size:          12px;
+  font-family:        Arial;
+  text-decoration:    none;
+  color:              #fff;
+  }
+
+td.index
+  {
+  font-size:          12px;
+  font-family:        Arial;
+  color:              #fff;
+  padding:            5px;
+  background-color:   #000000;
+  }
+
+div.deactivated
+  {
+  margin:             .1em 0em .1em 0em;
+  padding:            .1em;
+  align:              center;
+  color:              #777;
+  font-size:          16px;
+  }
+
+
+/* ****************** Thread ****************** */
+
+div.single
+  {
+  font-family:        Arial;
+  align:              left;
+  color:              #000;
+  font-size:          16px;
+  }
+
+h1.single
+  {
+  margin:             .1em 0em .1em 0em;
+  padding:            .1em;
+  color:              #000;
+  font-size:          16px;
+  font-weight:        bold;
+  }
+
+font.singlenick
+  {
+  font-family:        Arial;
+  color:              #000;
+  font-size:          16px;
+  font-style:         italic;
+  }
+
+font.singledate
+  {
+  font-family:        Arial;
+  color:              #000;
+  font-size:          16px;
+  font-style:         italic;
+  }
+
+font.newdate
+  {
+  font-family:        Arial;
+  color:              #c00;
+  }
+
+a.thread
+  {
+  text-decoration:    underline;
+  font-family:        Arial;
+  font-weight:        normal;
+  color:              #00009c;
+  }
+
+a.thread:visited
+  {
+  color:              #222;
+  }
+  
+td.thread_dark
+  {
+  font-family:        Arial;
+  font-size:          13px;
+  color:              #000;
+  background:         #fff;
+  }
+
+td.thread_light
+  {
+  font-family:        Arial;
+  font-size:          13px;
+  vertical-align:     middle;
+  color:              #000;
+  background:         #fff;
+  }
+
+
+/* ****************** COMPOSE ****************** */
+div.compose
+  {
+  halign:             right;
+  color:              #000;
+  font-size:          16px;
+  }
+
+h1.compose
+  {
+  margin:             .1em 0em .1em 0em;
+  padding:            .1em;
+  color:              #f00;
+  font-size:          18px;
+  font-weight:        normal;
+  }
+
+
+/* ****************** OTHER FONTS ****************** */
+
+
+b
+  {
+  font-weight:    bold;
+  }
+
+i
+  {
+  font-style:     italic;
+  }
+
+.warning
+  {
+  text-transform: none;
+  font-style:     normal;
+  font-weight:    bolder;
+  background:     none;
+  color:          #f00;
+  }
+
+.title
+  {
+  text-transform: none;
+  font-style:     normal;
+  font-weight:    normal;
+  background:     none;
+  color:          #fa0;
+  }
+
+.quoted
+  {
+  color:          #800;
+  }
+
+.selected
+  {
+  font-family:        Arial;
+  text-transform:     none;
+  text-decoration:    none;
+  font-style:         normal;
+  color:              #008200;
+  }
+
+.white
+  {
+  margin-top:       .5em;
+  margin-left:      .5em;
+  margin-right:     .5em;
+  margin-bottom:    0em;
+  padding-top:      0;
+  padding-left:     0;
+  padding-right:    0;
+  padding-bottom:   0;
+  color:            white;
+  font-size:        12px;
+  font-family:      Arial;
+  }
+  
+  .countdown { color: red; font-size: 13px }
+
+  .red { color: #b90101; }
+  a.red:link 	  { color:#b90101;; text-decoration:none; }
+  a.red:visited { color:#b90101;; text-decoration:none; }
+  a.red:hover	  { color:#000000; text-decoration:underline; }
+  a.red:active  { color:#b90101;; text-decoration:none; }

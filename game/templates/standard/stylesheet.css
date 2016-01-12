@@ -1,0 +1,305 @@
+/* allgemeine angaben */
+body
+  { 
+  margin-top:.5em;
+  margin-left:.5em;
+  margin-right:.5em;
+  margin-bottom:0em;
+  padding-top:0;
+  padding-left:0;
+  padding-right:0;
+  padding-bottom:0;
+  color:black;
+  font-size:12px;
+  font-family:Arial;
+  
+  background-color:#7a8ba4;
+  background-image:url(headbg.gif);
+  background-position:center top;
+  background-repeat:repeat-x;
+  background-attachment:scroll;
+  }
+
+table.standard
+  {
+  background-color:#f2f2f2; 
+  }  
+
+tr.standard
+  {
+  background-color:#f2f2f2; 
+  }  
+
+tr.standard:hover
+  {
+  background-color:#a2a2a2; 
+  }
+
+table.sub
+  {
+  background-color:#d2d2d2; 
+  } 
+  
+th
+  {
+  background-image:url('table_head.gif');
+  }  
+
+/* Das O-Wars Logo */
+.logo
+  {
+  width:100px;
+  height:  31px;
+  background-image: url('logo.gif');
+  }  
+  
+/* versionsnummer und uhrzeit im menu */  
+.version 
+  {
+  font-size: 12px; 
+  }
+
+/* tabellen im menu */ 
+table.menu 
+  {
+  background-color:#e2e2e2; 
+  font-size:12px;
+  width:130px;
+  }
+  
+th.menu
+  {
+  background-image:url('table_head.gif');
+  width:130px;
+  }  
+
+tr.menu 
+  {
+  background-color:#e2e2e2; 
+  }  
+
+/* anzeige des aktuellen ressi standes */ 
+table.ressis
+  {
+  background-color:rgb(0, 0, 0); 
+  color:#ffffff; 
+  font-size:12px;
+  }  
+  
+.ressis_eisen
+  {
+  background-color:#000000; 
+  background-image:url('eisen.gif');
+  width:70px;
+  height:20px;
+  }
+  
+.ressis_titan
+  {
+  background-color:#000000; 
+  background-image:url('titan.gif');
+  width:70px;
+  height:20px;
+  }  
+
+.ressis_oel
+  {
+  background-color:#000000; 
+  background-image:url('oel.gif');
+  width:70px;
+  height:20px;
+  }  
+  
+.ressis_uran
+  {
+  background-color:#000000; 
+  background-image:url('uran.gif');
+  width:70px;
+  height:20px;
+  }  
+  
+.ressis_gold
+  {
+  background-color:#000000; 
+  background-image:url('gold.gif');
+  width:70px;
+  height:20px;
+  }
+
+.ressis_chanje
+  {
+  background-color:#000000; 
+  background-image:url('chanje.gif');
+  width:70px;
+  height:20px;
+  }
+  
+.ressis_hangar
+  {
+  background-color:#000000; 
+  background-image:url('hangar.gif');
+  height:20px;
+  width:70px;
+  }
+  
+tr.ressis
+  {
+  background-color:#000000;
+  color:#ffffff;
+  }
+  
+.playerinfo
+  {
+  }  
+
+.input 
+  {
+  background-image:url('input.gif');
+  }
+  
+input.input
+  {
+  background-image:url('input.gif');
+  border:0; 
+  width:55px; 
+  height:14px
+  }
+  
+input
+  {
+  font-size: 10pt;
+  color:#000000;
+  border: solid #000000 1pt;
+  background-color:#b2b2b2;
+  }
+
+select
+  {
+  font-size: 10pt;
+  color:#000000;
+  border: solid #000000 1pt;
+  background-color:#e2e2e2;
+  }
+
+textarea
+  {
+  font-size: 10pt;
+  color:#000000;
+  border: solid #000000 1pt;
+  background-color:#e2e2e2;
+  }
+
+/* ****************** IMAGES ****************** */
+img
+  {
+  word-spacing:normal;
+  letter-spacing:normal;
+  text-transform:none;
+  text-decoration:none;
+  border-style:none;
+  }
+
+
+/* ****************** LINKS ****************** */
+a:link 	  
+  { 
+  color:#333333; 
+  text-decoration:none; 
+  }
+  
+a:visited 
+  { 
+  color:#333333; 
+  text-decoration:none; 
+  }
+  
+a:hover	  
+  { 
+  color:#000000; 
+  text-decoration:underline; 
+  background-color:#cccccc; 
+  }
+  
+a:active  
+  { 
+  color:#333333; 
+  text-decoration:none; 
+  }
+
+.countdown { color: red; font-size: 13px }
+
+.red { color: #b90101; }
+
+a.red:link 	  
+  { 
+  color:#b90101; 
+  text-decoration:none; 
+  }
+  
+a.red:visited 
+  { 
+  color:#b90101; 
+  text-decoration:none; 
+  }
+  
+a.red:hover	  
+  { 
+  color:#000000; 
+  text-decoration:underline; 
+  }
+  
+a.red:active  
+  { 
+  color:#b90101; 
+  text-decoration:none; 
+  }
+  
+.green { color: #01aa01; }
+
+a.green:link 	  
+  { 
+  color:#01b901; 
+  text-decoration:none; 
+  }
+  
+a.green:visited 
+  { 
+  color:#01b901; 
+  text-decoration:none; 
+  }
+  
+a.green:hover	  
+  { 
+  color:#000000; 
+  text-decoration:underline; 
+  }
+  
+a.green:active  
+  { 
+  color:#01b901; 
+  text-decoration:none; 
+  }
+  
+.challenged 
+  {
+  background-color: #dfc0d0;
+  }
+  
+.challenger
+  {
+  background-color: #afc0d9;
+  }
+  
+/* Klassen fuer die Karte */
+.kb  { width:12px;height:10px;background-image:url(kb.gif); }
+.kr  { width:12px;height:10px;background-image:url(kr.gif); }
+.kg  { width:12px;height:10px;background-image:url(kg.gif); }
+.kg2 { width:12px;height:10px;background-image:url(kg2.gif); }
+.kf  { width:12px;height:10px;background-image:url(karte_farm.gif); }
+.ke  { width:12px;height:10px;background-image:url(karte_enemy.gif); }
+.kn  { width:12px;height:10px;background-image:url(karte_nap.gif); }
+
+.karte 
+  {
+  background-image:url('karte_bg.jpg');
+  }

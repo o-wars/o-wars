@@ -1,0 +1,21 @@
+<?php
+
+$time = mktime(0,0,0,1,1,2006); 
+echo $time.' - '.date('d.m.y H:i', $time);
+
+
+include "functions.php";
+$dbh = db_connect();
+
+$res = "SELECT * FROM user WHERE 1;";
+
+for ($row = mysql_fetch_array($res); $row; $row = mysql_fetch_array($res);) {
+
+	echo $row['name'];
+
+
+}
+
+
+
+?>

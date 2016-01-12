@@ -1,0 +1,28 @@
+<table border="1" cellpadding="0" cellspacing="0" width="680px" style="background-color:#e2e2e2; font-size: 12px; width: 680px;">
+	<tr align="center" style="background-image:url(%template_path%table_head.gif);">
+		<td width="680px" align="center" colspan="1">
+			<b>Beitrag loeschen:</b>
+		</td>
+	</tr>
+	<tr align="center">
+		<td width="80px" align="center" style="padding:4px">
+			<br />
+			<div align="left">
+			%text%
+			</div>
+			<hr />
+			<font color="red">Beitrag wirklich loschen?????</font>
+			<form enctype="multipart/form-data" action="forum_del.php?SID" method="post">
+			<input type="hidden" name="pid" value="%pid%">			
+			<input type="checkbox" name="del" value="del">	
+			<input type="hidden" name="fid" value="%fid%"><br />
+			<b><input type="submit" value="weg damit" name="submit" style="border:1; background-color:#ff0000">	</b>
+			<!-- <input type="submit" value="speichern"> -->
+			</form>
+			<form enctype="multipart/form-data" action="forum.php?SID" method="post">
+				<input type="hidden" name="pid" value="%pid%">
+				<b><input type="submit" value="HELL! NOOOOOOOOOOOOOOOO!" name="submit" style="border:1; background-color:#00ff00">	</b>
+			</form>
+		</td>
+	</tr>
+</table>

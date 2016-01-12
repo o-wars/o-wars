@@ -1,0 +1,47 @@
+<form enctype="multipart/form-data" action="forum_reply.php?SID" method="post">
+<table border="1" cellpadding="0" cellspacing="0" style="width:680px; background-color:#e2e2e2; font-size: 12px; width: 680px;">
+	<tr align="center">
+		<th style="width:480px" align="center" colspan="2">
+			<b>Antwort schreiben</b>
+		</th>
+		<td rowspan="4" valign="top">
+		%bbcode%
+		</td>
+	</tr>
+	<tr align="center">
+		<td style="width:80px" align="center">
+			Topic:
+		</td>
+		<td style="width:400px" align="left">
+			&nbsp;%topic%
+		</td>
+	</tr>
+	<tr align="center">
+		<td style="width:80px" align="center">
+			Text:
+		</td>	
+		<td style="width:400px" align="center">
+			<textarea name="text" style="border:0;width:400px;height:200px;"></textarea>
+		</td>
+	</tr>	
+	<tr align="center">
+		<td style="width:480px" align="center" colspan="2">
+			<input type="hidden" name="tid" value="%tid%">			
+			<input type="hidden" name="fid" value="%fid%">	
+			<input type="image" src="img/forum_submit.gif" alt="eintragen" style="border:0; background-color:#e2e2e2">	
+			<!-- <input type="submit" value="speichern"> -->
+		</td>
+	</tr>
+</table>
+</form>
+<br /><br />
+	<b>Es k&ouml;nnen folgende Tags verwendet werden:</b><br /></b>
+	[b] fette Schrift <br />
+	[/b] ende fette Schrift<br />
+	[i] geschwungene Schrift <br />
+	[/i] ende geschwungene Schrift<br />
+	[color="farbe"] anfang farbige Schrift (HEX-Farbcode #123456 oder Farbe auf englisch)<br />
+	[/color] ende farbige Schrift<br />
+
+	[center] anfang zentrierte Schrift<br />
+	[/center] ende zentrierte Schrift<br /><br />	

@@ -1,0 +1,53 @@
+<form enctype="multipart/form-data" action="agenten.php?SID" method="post">
+Den Agenten
+<select name="agent" size="1" style="border:0; height:20px">
+	%select%
+</select>
+<select name="dauer" size="1" style="border:0; height:20px">
+	<option value="1">1 Stunde</option>		
+	<option value="12">12 Stunden</option>	
+	<option value="24">24 Stunden</option>	
+	<option value="48">48 Stunden</option>		
+</select>
+<select name="training" size="1" style="border:0; height:20px">
+	<option value="abwehr">Abwehr</option>
+	<option value="spionage">Spionage</option>
+	<option value="sabotage">Sabotage</option>
+	<option value="diebstahl">Diebstahl</option>
+	<option value="tarnung">Tarnung</option>
+</select>
+<input type="submit" name="trainieren" value="trainieren" />
+</form>
+<br /><br />
+<b>Trainingsarten:</b><br />
+&nbsp;&nbsp;<b>Abwehr:</b>&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;1 Stunde = +4
+&nbsp;&nbsp;&nbsp;12 Stunden = +60
+&nbsp;&nbsp;&nbsp;24 Stunden = +140
+&nbsp;&nbsp;&nbsp;48 Stunden = +320
+<br />
+&nbsp;&nbsp;<b>Spionage:</b>
+&nbsp;&nbsp;&nbsp;1 Stunde = +4
+&nbsp;&nbsp;&nbsp;12 Stunden = +60
+&nbsp;&nbsp;&nbsp;24 Stunden = +140
+&nbsp;&nbsp;&nbsp;48 Stunden = +320
+<br />
+&nbsp;&nbsp;<b>Sabotage:</b>
+&nbsp;&nbsp;&nbsp;1 Stunde = +2
+&nbsp;&nbsp;&nbsp;12 Stunden = +30
+&nbsp;&nbsp;&nbsp;24 Stunden = +70
+&nbsp;&nbsp;&nbsp;48 Stunden = +160
+<br />
+&nbsp;&nbsp;<b>Diebstahl:&nbsp;</b>
+&nbsp;1 Stunde = +1
+&nbsp;&nbsp;&nbsp;12 Stunden = +15
+&nbsp;&nbsp;&nbsp;24 Stunden = +35
+&nbsp;&nbsp;&nbsp;48 Stunden = +80
+<br />
+&nbsp;&nbsp;<b>Tarnung:</b>&nbsp;
+&nbsp;&nbsp;&nbsp;1 Stunde = +2
+&nbsp;&nbsp;&nbsp;12 Stunden = +30
+&nbsp;&nbsp;&nbsp;24 Stunden = +70
+&nbsp;&nbsp;&nbsp;48 Stunden = +160
+<br /><br />
+<b>Es kann immer nur ein Agent trainieren.</b>

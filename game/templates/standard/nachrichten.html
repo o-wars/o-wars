@@ -1,0 +1,42 @@
+<br />
+<table border="0" cellspacing="0" style="width:600px;">
+	<tr align="center">
+		<td align="left" valign="bottom">
+			<b>%box%</b>
+		</td>
+		<td align="right" valign="bottom">
+			<a href="nachricht_schreiben.php?SID"><img src="img/nachricht.gif" alt="Nachricht schreiben" /></a>
+			<br />
+			Seite: %pages%
+		</td>		
+	</tr>	
+</table>
+<form enctype="multipart/form-data" action="nachrichten.php?SID" method="post">
+<table border="1" cellspacing="0" style="width:600px;" class="standard">
+	<tr align="center">
+		<th style="width:20px">&nbsp;</th>	
+		<th style="width:88px">Datum</th>
+		<th style="width:55px">UBL</th>
+		<th style="width:120px">Absender</th>
+		<th style="width:280px">Betreff</th>
+		<th style="width:50px">Gelesen</th>
+	</tr>
+	%gelesene_nachrichten%
+</table>
+
+<table border="0" cellspacing="0" style="width:600px;">
+	<tr>
+		<td align="left" valign="top">
+			<input type="submit" name="submit" value="Alle markierten Nachrichten loeschen." />
+			<input type="checkbox" name="del" value="1" />
+			</form><br />
+			<a onClick="%js_all%">Alle Ausw&auml;hlen</a> / 
+			<a onClick="%js_all2%">Keinen Ausw&auml;hlen</a>
+		</td>
+		<td align="right" valign="top">
+			Seite: %pages%<br />
+			<a href="nachricht_schreiben.php?SID"><img src="img/nachricht.gif" alt="Nachricht schreiben" /></a>
+		</td>
+	</tr>
+</table>
+<br /><br />

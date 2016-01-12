@@ -1,0 +1,100 @@
+<script type="text/javascript">
+<!-- Begin
+function calculate_damage() {
+  var uran_verbauen = Math.abs(document.getElementsByName("uran_verbauen")[0].value);
+
+  var titan_verbrauch = Math.round(uran_verbauen/10);
+
+  var dauer = uran_verbauen/%lvl_plasma%;
+  var min_count = dauer/60;
+  min_count=Math.floor(min_count);
+  sec_count = dauer - (min_count*60);
+  if(min_count>0)
+    {
+       var std_count = min_count/60;
+       std_count=Math.floor(std_count);
+       min_count=min_count-std_count*60;
+    }
+  else { var std_count = 0; }
+  sec_count=Math.round(sec_count);
+  if(min_count<10) { min_angabe='0'+min_count; }
+  else { min_angabe=''+min_count; }
+  if(sec_count<10) { sec_angabe='0'+sec_count; }
+  else { sec_angabe=''+sec_count; }
+  
+  var damage = Math.round((uran_verbauen/5+((uran_verbauen/20)*%lvl_plasma%))/2);
+
+  document.getElementById('dauer').innerHTML = std_count+':'+min_angabe+':'+sec_angabe;
+  document.getElementById("titan_verbrauch").innerHTML="<font color=red>"+titan_verbrauch+"</font>";
+  document.getElementById("damage").innerHTML="<font color=red>"+damage+"</font>";
+}
+// End -->
+</script>
+<br /><br />
+<table border="1" cellspacing="0" class="sub" style="width:720px">
+	<tr>
+		<th>
+			<b>Raumstation:</b>
+		</th>
+	</tr>
+	<tr>
+		<td align="center">
+		<br />
+<table border="1" cellspacing="0" class="standard" style="width: 680px;">
+	<tr align="center"><th style="width:130px">Geb&auml;ude</th><th>Level</th><th style="width:55px">Eisen</th><th style="width:55px">Titan</th><th style="width:55px">Oel</th><th style="width:55px">Uran</th><th style="width:55px">Gold</th><th style="width:55px">Chanje</th><th style="width:80px">Dauer</th><th style="width:55px">&nbsp;</th></tr>
+	<tr class="standard"><td><a href="javascript:popUp('details_geb.php?id=scanner',400)">Scanner</a></td><td align="center">%lvl_scanner%</td><td align="right">%scanner_eisen%</td><td align="right">%scanner_titan%</td><td align="right">%scanner_oel%</td><td align="right">%scanner_uran%</td><td align="right">%scanner_gold%</td><td align="right">%scanner_chanje%</td><td align="right">%scanner_dauer%</td><td><center>%scanner_bauen%</center></td></tr>
+	<tr class="standard"><td><a href="javascript:popUp('details_geb.php?id=plasma',400)">Plasmakanone</a></td><td align="center">%lvl_plasma%</td><td align="right">%plasma_eisen%</td><td align="right">%plasma_titan%</td><td align="right">%plasma_oel%</td><td align="right">%plasma_uran%</td><td align="right">%plasma_gold%</td><td align="right">%plasma_chanje%</td><td align="right">%plasma_dauer%</td><td><center>%plasma_bauen%</center></td></tr>
+</table>
+<br />
+%abbrechen%
+<br />
+<table border="1" cellspacing="0" class="standard" style="width: 680px">
+	<tr align="center"><th style="width:50%">Scanner</th><th style="width:50%">Plasmakanone</th></tr>
+	<tr><td valign="top" align="center">
+		%scanner%
+	</td>
+	<td valign="top">
+		<form enctype="multipart/form-data" action="raumstation.php?SID" method="post">
+			<table border="0" cellspacing="0" style="width: 100%">
+				<tr>
+					<td colspan="2">
+						<b><center>Mission beschiessen:</center></b>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Zielmission ( <b><font class="red">ID</font> - <font class="red">PID</font></b> ): 
+					</td>
+					<td align="right">
+						<input type="text" name="target" value="%id%" style="width: 130px;" /><b> - </b><input type="text" maxlength="3" name="pid" value="%pid%" style="width: 30px;" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Munition:
+					</td>
+					<td align="right">
+						<select name="round" size="1" style="border:0; width:175px; height:20px">
+							%select%
+						</select>
+						
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<i class="red">(Motorr&auml;der, Panther und Nebelwerfer sind Plasmaimmun.)</i><br />
+						<input type="hidden" name="beschuss" value="1" />
+						<input type="submit" name="submit" value="Feuer!" />
+						</form><br /><br />
+					</td>
+				</tr>
+				<tr>
+			</table>
+			%munition_bauen%
+		</td>
+</tr>
+</table>
+<br />
+</td>
+</tr>
+</table>

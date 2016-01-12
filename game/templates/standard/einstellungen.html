@@ -1,0 +1,163 @@
+<br /><br />
+<form enctype="multipart/form-data" action="einstellungen.php?SID" method="post">
+<table border="1" cellspacing="0" class="standard">
+	<tbody>
+		<tr>
+			<th colspan="2">
+				Einstellungen:
+			</th>
+		</tr>
+		<tr>
+			<td width="270" style="padding-left:3px">
+				<b>Name:</b>
+			</td>
+			<td width="270">
+				%name%
+			</td>
+		</tr>
+		<tr>
+			<td width="200" style="padding-left:3px">
+				<b>Basis-Name:</b>
+			</td>
+			<td width="270" class="input">
+				<input class="input" type="text" name="base" value="%base%" style="border:0px;width:100%;height:15px;" />
+			</td>
+		</tr>
+		<tr>
+			<td width="200" style="padding-left:3px">
+				<b>Registrierungs-eMail:</b><br />
+				<i>(kann nur vom Admin ge&auml;ndert werden.)</i>
+			</td>
+			<td width="270"  class="input">
+				<input class="input" type="text" name="email" value="%email%" style="border:0px;width:100%;height:15px;" readonly />
+			</td>
+		</tr>
+		<tr>
+			<td width="200" style="padding-left:3px">
+				<b>2. eMail:</b><br />
+				<i>(kann ge&auml;ndert werden.)</i>
+			</td>
+			<td width="270"  class="input">
+				<input class="input" type="text" name="email2" value="%email2%" style="border:0px;width:100%;height:15px;" />
+			</td>
+		</tr>		
+		<tr>
+			<td width="200" style="padding-left:3px">
+				<b>Signatur:</b>
+			</td>
+			<td width="270"  class="input">
+				<textarea class="input" name="sig" style="border:0px;width:270px;">%sig%</textarea>
+			</td>
+		</tr>
+		<tr>
+			<td width="200" style="padding-left:3px">
+				<b>Userpic</b>
+			</td>
+			<td width="270" class="input">
+				<input class="input" type="text" name="pic" value="%pic%" style="border:0px;width:100%;height:15px;" />
+			</td>
+		</tr>
+		<tr>
+			<td width="200" style="padding-left:3px">
+				<b>IRC-Perform-on-Connect:</b> <font color="red">*</font><br />
+				<i>z.B.:<br />
+				/msg nickserv identify PASSWORD<br />
+				/join #ClanChan</i>
+			</td>
+			<td width="270" class="input">
+				<textarea class="input" name="irc" style="border:0px;width:270px;height:60px">%irc%</textarea>
+			</td>
+		</tr>		
+		<tr>
+			<td width="200" style="padding-left:3px">
+				<b>Passwort &auml;ndern:</b><br />
+				<i>(2x eingeben / wenn du das Passwort nicht &auml;ndern willst lasse beide Felder frei.)</i>
+			</td>
+			<td width="270" class="input" valign="middle">
+				<input class="input" type="password" name="pw1" value="" style="border-top:0px;border-left:0px;border-right:0px;width:270px;height:15px;" /><hr style="background-color:black;" />
+				<input class="input" type="password" name="pw2" value="" style="border-top:0px;border-bottom:0px;border-left:0px;border-right:0px;width:270px;height:15px;" />
+			</td>
+		</tr>
+		<tr>
+			<td width="200" style="padding-left:3px">
+				<b>Sonstiges:</b><br />
+			</td>
+			<td width="270" class="input" valign="middle">
+				<input type="checkbox" name="badwords" value="1" %checked_badwords% /> <b>Kraftausdr&uuml;cke nicht anzeigen</b>
+			</td>
+		</tr>		
+		<tr>
+			<td width="200" style="padding-left:3px">
+				<b>Karte:</b>
+			</td>
+			<td width="270" class="input">
+				<input type="radio" name="karte" value="karte" /><b> normale Karte</b><br />&rarr; aktualisiert sich nur alle 4h<br />&rarr; funktioniert in allen Browsern<br />
+				<input type="radio" name="karte" value="karte_neu" /> <b>experimentelle Karte</b><br />&rarr; immer aktuell<br />&rarr; weitere Features<br />&rarr; funktioniert nur in neuen Browsern<br />
+			</td>
+		</tr>		
+		<tr>
+			<td width="200" style="padding-left:3px">
+				<b>Style:</b>
+			</td>
+			<td width="270" class="input">
+				<select name="style" style="width:100%" />
+					%styles%
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td width="200" style="padding-left:3px">
+				<b>Externer-Style:</b><br />
+				<i>Diese Option erm&ouml;glicht es dir einen externen Style einzubinden. Sollte diese Option aktiv sein (sobald etwas eingetragen ist), wird der normale Style deaktiviert und nurnoch der Externe Style genutzt.<br />
+				Ein Externer Style sollte wie folgt aussehen:<br />
+				<b>http://example.com/ow-style/</b><br />Basis-Style: <a href="style.rar">style.rar</a><br />
+				Sollte O-Wars dann keine Bilder und Farben mehr haben, hast du etwas falsch gemacht.</i>
+			</td>
+			<td width="270" class="input">
+				<textarea name="graphic" style="border:0px;width:100%;height:150px;" class="input">%graphic%</textarea>
+			</td>
+		</tr>				
+		<tr>
+			<td colspan="2" align="center">
+				<br />
+				<input type="submit" value="Einstellungen Speichern !" name="submit" />
+				</form>
+				<br />
+				%action%
+				<br />
+				<b>&Auml;rger mit der Nachbarschaft ? &rarr; <a href="umzug.php?SID" class="red">Basis umziehen !</a></b><br />
+				<br />
+				<table border="1" cellspacing="0" class="sub">
+					<tbody>
+						<tr>
+							<td width="470" style="padding:4px;">
+								<b><center>IRC-Anleitung:</center></b>
+								<br />
+								<b><font color="red">*</font>: IRC-Nick Registrieren:</b> <i>/msg nickserv register PASSWORT EMAIL</i><br />
+								<b><font color="red">*</font>: IRC-Nick Identifizieren:</b> <i>/msg nickserv identify PASSWORT</i><br />
+								<b><font color="red">*</font>: IRC-Nick &auml;ndern:</b> <i>/nick DEIN-NICK</i><br />
+								<b><font color="red">*</font>: IRC-Channel betreten:</b> <i>/join #channel</i><br /><br />
+								Wenn du deinen IRC-Nick bei dem IRC Server registrierst, kann ihn dir niemand mehr klauen. 
+								Dann musst du dich aber jedes mal wenn du dich mit dem Server verbindest identifizieren. 
+								Dies geht automatisch, wenn du den Befehl in den <i>IRC-Perform-on-Connect</i> eintr&auml;gst.<br /><br />
+								<i><b>Das k&ouml;nnte dann so aussehen:</b></i><br />
+								<i>
+								/nick TheBunman<br />
+								/msg nickserv identify GEHEIMESPASSWORT<br />
+								/join #mein-Clan<br /><br />
+								</i>
+								<b>Vorher muss der Nick nat&uuml;rlich mit folgenden Befehlen registriert werden:</b><br />
+								<i>
+								/nick TheBunman<br />
+								/msg nickserv register GEHEIMESPASSWORT MEINE@EMAIL.de<br />
+								</i>
+								<br />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<br />
+			</td>
+		</tr>				
+	</tbody>
+</table>

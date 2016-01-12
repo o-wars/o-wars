@@ -1,0 +1,35 @@
+			<form enctype="multipart/form-data" action="raumstation.php?SID" method="post">
+			<table border="0" cellspacing="0" style="width: 100%;">
+				<tr>
+					<td colspan="2">
+						<b><center>Basis scannen:</center></b>
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 50%;">
+						Basis:
+					</td>
+					<td style="width: 50%;">
+						<input type="text" name="scanbase" value="%scanbase%" style="width:200px;" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="left">
+						Kosten:<br />
+						%scankosten%<br /><br />
+						* Ungenauigkeit: +/- %ungenauigkeit% Minuten <br />
+						* Grundkosten pro Scan: 250 Uran <br />
+						* Kosten pro Kilometer:&nbsp; %kosten% Uran <br />
+						* Reichweite in Kilometer:&nbsp; %reichweite% km <br />
+						* Liefert R&uuml;ckkehrzeiten der Missionen <br />
+						* &Uuml;berf&uuml;hrungen k&ouml;nnen nicht entdeckt werden <br />
+						* Entschl&uuml;sselung: <br />
+						&nbsp;&nbsp;&nbsp;x = gescannte Basis Spionage Level <br />
+						&nbsp;&nbsp;&nbsp;y = dein Spionage Level <br />
+						&nbsp;&nbsp;&nbsp;Entschl&uuml;sselungsdauer in Minuten = (x/y)*(40-%lvl_scanner%)<br />
+						<br />
+						<center><input type="submit" name="submit" value="Kosten berechnen" /> <input type="submit" name="submit" value="scannen" /></center>
+					</td>
+				</tr>
+			</table>
+			</form>

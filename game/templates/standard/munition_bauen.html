@@ -1,0 +1,48 @@
+			<form enctype="multipart/form-data" action="raumstation.php?SID" method="post">
+			<table border="0" cellspacing="0" style="width: 100%;">
+				<tr>
+					<td colspan="2">
+						<b><center>Munition herstellen:</center></b>
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 50%;">
+						Uran:
+					</td>
+					<td style="width: 50%;">
+						<input type="text" name="uran_verbauen" value="" style="width:170px;" align="right" onFocus="calculate_damage()" onBlur="calculate_damage()" onKeyDown="calculate_damage()" onKeyUp="calculate_damage()" onChange="calculate_damage()" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Titan:
+					</td>
+					<td>
+						<div id="titan_verbrauch">-</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Herstellungsdauer:
+					</td>
+					<td>
+						<div id="dauer">-</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Resultierender Schaden:
+					</td>
+					<td>
+						<div id="damage">-</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+					Schaden = (Uran/5+((Uran/20)*Lvl_Plasmakan.))/2
+						<br />
+						<input type="submit" name="submit" value="Bauen" />
+					</td>
+				</tr>
+			</table>
+			</form>

@@ -1,0 +1,53 @@
+<br />
+<table border="0" cellspacing="0" style="width:600px">
+	<tr align="center">
+		<td align="left" valign="bottom">
+			<b>Berichte:</b>
+		</td>
+		<td align="right" valign="top">
+			Seite: %pages%
+		</td>		
+	</tr>
+</table>
+
+<form enctype="multipart/form-data" action="berichte.php?SID" method="post">
+<table border="1" style="width:600px;" cellpadding="0" cellspacing="0" class="standard">
+	<tr align="center">
+		<th style="width:20px">
+			&nbsp;
+		</th>
+		<th style="width:88px">
+			Datum
+		</th>		
+		<th style="width:140px">
+			Absender
+		</th>
+		<th style="width:285px">
+			Betreff
+		</th>
+		<th style="width:50px">
+			Gelesen
+		</th>		
+	</tr>
+	%ungelesene_berichte%
+</table>
+
+<table border="0" cellspacing="0" style="width:600px;">
+	<tr align="center">
+		<td align="left" valign="top">
+			<input type="submit" name="submit" value="Alle markierten Berichte loeschen." />
+			<input type="checkbox" name="del" value="1" />
+			</form><br />
+			<a onClick="%js_all%">Alle Ausw&auml;hlen</a> / 
+			<a onClick="%js_all2%">Keinen Ausw&auml;hlen</a>
+		</td>
+		<td align="right" valign="top">
+			Seite: %pages%
+			<form enctype="multipart/form-data" action="berichte.php?SID" method="post">
+			<input type="checkbox" name="alle_gelesen" value="1" />
+			<input type="submit" name="submit" value="Alle Berichte als gelesen markieren." />
+			</form>
+		</td>		
+	</tr>
+</table>
+<br />
